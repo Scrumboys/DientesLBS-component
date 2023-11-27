@@ -12,7 +12,6 @@ class DientesLBS extends HTMLElement {
     xmlhttp.onreadystatechange = () => {
       //El siguiente if es para verificar que el estado de la petición sea satisfactorio
       if (xmlhttp.status == 200 && xmlhttp.readyState == 4) {
-        console.log("Peraza");
         txt = xmlhttp.responseText;
         const shadowRoot = this.shadowRoot;
         shadowRoot.innerHTML = txt;
@@ -30,6 +29,8 @@ class DientesLBS extends HTMLElement {
         const botonReiniciar = shadowRoot.querySelector("#BOTON");
         const cepilloConPasta = shadowRoot.querySelector("#cepilloconpasta");
         const tuboPasta = shadowRoot.querySelector("#pasta");
+        const sonidoLimpieza = shadowRoot.querySelector("#sonidoLimpieza");
+        const sonidoLimpiezaTotal = shadowRoot.querySelector("#sonidoLimpiezaTotal");
 
         function reiniciarTodo() {
           // Reiniciar la opacidad y el estado de los dientes
@@ -92,6 +93,7 @@ class DientesLBS extends HTMLElement {
                 let diente = dientes[i].element;
                 let dienteRect = diente.getBoundingClientRect();
 
+
                 // Si el diente está limpio o no está dentro del área de pastasola, no se cambia la opacidad
                 if (dientes[i].limpio || !isInArea(dienteRect, pastaSolaRect)) {
                   continue;
@@ -100,6 +102,7 @@ class DientesLBS extends HTMLElement {
                 // Marcar el diente como limpio y cambiar su opacidad
                 dientes[i].limpio = true;
                 diente.style.opacity = 0;
+                sonidoLimpieza.play();
               }
               for (let i = 0; i < 5; i++) {
                 let mancha = manchas[i].element;
@@ -113,6 +116,7 @@ class DientesLBS extends HTMLElement {
                 // Marcar el diente como limpio y cambiar su opacidad
                 manchas[i].limpio = true;
                 mancha.style.opacity = 0;
+                
               }
               let manchasLimpias = manchas.every((mancha) => mancha.limpio);
               let dientesLimpios = dientes.every((diente) => diente.limpio);
@@ -120,6 +124,7 @@ class DientesLBS extends HTMLElement {
                 lenguaSucia.style.opacity = 0;
                 if (dientesLimpios) {
                   brillitos.classList.remove("hidden");
+                  sonidoLimpiezaTotal.play();
                   gsap.to(brillitos, {
                     opacity: 1,
                     duration: 1,
