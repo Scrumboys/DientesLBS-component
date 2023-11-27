@@ -1,3 +1,12 @@
+html,
+body {
+  height: 100vh;
+}
+
+body {
+  overflow-y: hidden;
+}
+
 /* Agrega una clase para la transición de opacidad */
 .dienteTransicion,
 .manchaTransicion,
@@ -15,13 +24,14 @@ svg {
 }
 
 #brush-container {
-  width: 100%;
-  height: 100vh;
+  width: 95%;
+  height: 95vh;
   display: flex;
-    justify-content: center;
-    align-items: center;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
 }
 
 .hidden {
-  display: none;
+  opacity: 0;
 }

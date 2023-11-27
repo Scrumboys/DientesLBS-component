@@ -147,6 +147,11 @@ class DientesLBS extends HTMLElement {
         });
         Draggable.create(tuboPasta, {
           bounds: this._dientesLBS,
+          onDragStart: function () {
+            const targetElement = this.target;
+            const parent = targetElement.parentNode;
+            parent.insertBefore(targetElement, parent.lastChild);
+          },
           onDrag: function () {
             const pastaSolaBounding = pastaSola.getBoundingClientRect();
             const boquilla = shadowRoot
