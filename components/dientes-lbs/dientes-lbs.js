@@ -20,17 +20,17 @@ class DientesLBS extends HTMLElement {
 
         gsap.registerPlugin(Draggable);
 
-        const dientes = [];
-        const manchas = [];
+        const dientes = [],
+              manchas = [];
 
-        const brillitos = shadowRoot.querySelector("#brillos");
-        const pastaSola = shadowRoot.querySelector("#pasta1");
-        const lenguaSucia = shadowRoot.querySelector("#lenguasucia");
-        const botonReiniciar = shadowRoot.querySelector("#BOTON");
-        const cepilloConPasta = shadowRoot.querySelector("#cepilloconpasta");
-        const tuboPasta = shadowRoot.querySelector("#pasta");
-        const sonidoLimpieza = shadowRoot.querySelector("#sonidoLimpieza");
-        const sonidoLimpiezaTotal = shadowRoot.querySelector("#sonidoLimpiezaTotal");
+  const brillitos = shadowRoot.querySelector("#brillos"),
+        pastaSola = shadowRoot.querySelector("#pasta1"),
+        lenguaSucia = shadowRoot.querySelector("#lenguasucia"),
+        botonReiniciar = shadowRoot.querySelector("#BOTON"),
+        cepilloConPasta = shadowRoot.querySelector("#cepilloconpasta"),
+        tuboPasta = shadowRoot.querySelector("#pasta"),
+        sonidoLimpieza = shadowRoot.querySelector("#sonidoLimpieza"),
+        sonidoLimpiezaTotal = shadowRoot.querySelector("#sonidoLimpiezaTotal");
 
         function reiniciarTodo() {
           // Reiniciar la opacidad y el estado de los dientes
