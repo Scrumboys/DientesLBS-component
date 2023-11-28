@@ -38,19 +38,14 @@ class DientesLBS extends HTMLElement {
             diente.element.style.opacity = 1;
             diente.limpio = false;
           });
-
           // Reiniciar la opacidad y el estado de las manchas
           manchas.forEach((mancha) => {
             mancha.element.style.opacity = 1;
             mancha.limpio = false;
           });
-
           // Ocultar elementos adicionales si es necesario
-
           lenguaSucia.style.opacity = 1;
           brillitos.classList.add("hidden");
-          gsap.to(brillitos, { opacity: 0 });
-
           // Ocultar la pasta y restablecer su opacidad
           pastaSola.classList.add("hidden");
           gsap.to(pastaSola, { opacity: 0 });
@@ -59,7 +54,7 @@ class DientesLBS extends HTMLElement {
         // Evento clic para el botón de reinicio
         botonReiniciar.style.cursor = "pointer";
         botonReiniciar.addEventListener("click", reiniciarTodo);
-
+        reiniciarTodo();
         for (let i = 1; i <= 32; i++) {
           let diente = shadowRoot.querySelector(`#dientesucio${i}`);
           diente.classList.add("dienteTransicion");
