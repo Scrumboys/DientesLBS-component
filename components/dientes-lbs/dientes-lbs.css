@@ -24,12 +24,15 @@ svg {
 }
 
 #brush-container {
-  width: 95%;
-  height: 95vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
+	width: 100%;
+	height: 100vh;
+	display: grid;
+	align-content: center;
+	justify-items: center;
+	align-items: center;
+	background-image: url(../../assets/img/fondo_dientes.svg);
+	background-size: cover;
+	background-position: center;
 }
 
 .hidden {

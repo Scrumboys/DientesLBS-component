@@ -26,35 +26,24 @@ class DientesLBS extends HTMLElement {
   const brillitos = shadowRoot.querySelector("#brillos"),
         pastaSola = shadowRoot.querySelector("#pasta1"),
         lenguaSucia = shadowRoot.querySelector("#lenguasucia"),
-        botonReiniciar = shadowRoot.querySelector("#BOTON"),
         cepilloConPasta = shadowRoot.querySelector("#cepilloconpasta"),
         tuboPasta = shadowRoot.querySelector("#pasta"),
         sonidoLimpieza = shadowRoot.querySelector("#sonidoLimpieza"),
         sonidoLimpiezaTotal = shadowRoot.querySelector("#sonidoLimpiezaTotal");
 
-        function reiniciarTodo() {
-          // Reiniciar la opacidad y el estado de los dientes
-          dientes.forEach((diente) => {
-            diente.element.style.opacity = 1;
-            diente.limpio = false;
-          });
-          // Reiniciar la opacidad y el estado de las manchas
-          manchas.forEach((mancha) => {
-            mancha.element.style.opacity = 1;
-            mancha.limpio = false;
-          });
-          // Ocultar elementos adicionales si es necesario
-          lenguaSucia.style.opacity = 1;
-          brillitos.classList.add("hidden");
-          // Ocultar la pasta y restablecer su opacidad
-          pastaSola.classList.add("hidden");
-          gsap.to(pastaSola, { opacity: 0 });
-        }
+      
+     const elementsHTML = {
+      dientes,
+      manchas,
+      brillitos,
+      pastaSola,
+      lenguaSucia
+     };   
+     
+		document.getElementById("botonjugardenuevo").addEventListener("click",
+      this.reiniciarTodo.bind(this, elementsHTML));
 
-        // Evento clic para el botón de reinicio
-        botonReiniciar.style.cursor = "pointer";
-        botonReiniciar.addEventListener("click", reiniciarTodo);
-        reiniciarTodo();
+		
         for (let i = 1; i <= 32; i++) {
           let diente = shadowRoot.querySelector(`#dientesucio${i}`);
           diente.classList.add("dienteTransicion");
@@ -125,6 +114,7 @@ class DientesLBS extends HTMLElement {
                     duration: 1,
                     onComplete: function () {
                       gsap.to(brillitos, { opacity: 0, duration: 1 });
+					  document.querySelector('#pantallaFinal').style.display = 'grid';
                     },
                   });
                 }
@@ -182,6 +172,31 @@ class DientesLBS extends HTMLElement {
     //El siguiente codigo es para obtener el archivo html que contiene el componente
     xmlhttp.open("GET", "components/dientes-lbs/dientes-lbs.html", true);
     xmlhttp.send();
+  }
+
+   reiniciarTodo(elementosHTML) {
+    
+	  const { dientes, manchas, lenguaSucia, brillitos, pastaSola } = elementosHTML;
+	  // Reiniciar la opacidad y el estado de los dientes
+	  dientes.forEach((diente) => {
+	    diente.element.style.opacity = 1;
+	    diente.limpio = false;
+	  });
+    // Reiniciar la opacidad y el estado de las manchas
+    manchas.forEach((mancha) => {
+      mancha.element.style.opacity = 1;
+      mancha.limpio = false;
+    });
+    // Ocultar elementos adicionales si es necesario
+    lenguaSucia.style.opacity = 1;
+    brillitos.classList.add("hidden");
+    // Ocultar la pasta y restablecer su opacidad
+    pastaSola.classList.add("hidden");
+    gsap.to(pastaSola, { opacity: 0 });
+
+    document.getElementById('pantallaFinal').style.display = 'none';
+    document.getElementById('pantallaJuego').style.display = 'grid';
+
   }
 
   updateStyle() {
